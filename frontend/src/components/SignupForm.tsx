@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import apiClient from "@/lib/api-client";
 import { REGISTER_ROUTE } from "@/utils/constant";
+import { emailValidator, passwordValidator } from "@/utils/validator";
 
 export const SignupForm = () => {
   const [name, setName] = useState("");
@@ -29,6 +30,16 @@ export const SignupForm = () => {
     setIsLoading(true);
     
     try {
+
+      if(!emailValidator(email)){
+        toast.error("Please enter a valid email address");
+        return;
+      }
+
+      if(!passwordValidator(password)){
+        toast.error("Password must include 8+ characters, uppercase, lowercase, and special characters.");
+        return;
+      }
      
       const response = await apiClient.post(REGISTER_ROUTE,{name,email,password,country},{withCredentials:true})
 
@@ -41,7 +52,11 @@ export const SignupForm = () => {
       }
 
     } catch (error) {
-      toast.error("Signup failed. Please try again.");
+      if(error.status === 409){
+        toast.error("Email is already in use");
+      }else{
+        toast.error("Signup failed. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
