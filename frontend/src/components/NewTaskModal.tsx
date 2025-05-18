@@ -50,8 +50,7 @@ export const NewTaskModal = () => {
     try {
       const now = new Date().toISOString();
 
-      const newTask: Task = {
-        id: `task-${Date.now()}`,
+      const newTask = {
         title,
         description,
         status,
@@ -65,7 +64,7 @@ export const NewTaskModal = () => {
       });
 
       if (response.status === 201) {
-        setTasks([...tasks, newTask]);
+        setTasks([...tasks, response.data]);
         setTitle("");
         setDescription("");
         setStatus("Pending");
