@@ -46,8 +46,8 @@ taskly/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/taskly.git
-cd taskly
+git clone https://github.com/sahell0x/appsierra-taskly.git
+cd appsierra-taskly
 ```
 
 ---
@@ -63,7 +63,7 @@ Create a `.env` file inside `backend/`:
 
 ```
 DB_URL=your_mongodb_connection_string
-ORIGIN=http://localhost:5173
+ORIGIN=http://localhost:8080
 SECRET=your_jwt_secret_key
 ```
 
@@ -85,7 +85,7 @@ npm install
 Create a `.env` file inside `frontend/`:
 
 ```
-VITE_SERVER_URL=http://localhost:5000/api
+VITE_SERVER_URL=http://localhost:3000
 ```
 
 Start the frontend development server:
@@ -94,5 +94,5 @@ Start the frontend development server:
 npm run dev
 ```
 
-By default, the app will run at: [http://localhost:5173](http://localhost:5173)
+By default, the app will run at: [http://localhost:8080](http://localhost:8080)
 
